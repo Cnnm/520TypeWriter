@@ -41,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        this.getWindow().setFlags(WindowManager.LayoutParams.TYPE_STATUS_BAR, WindowManager.LayoutParams.TYPE_STATUS_BAR);
         setContentView(R.layout.activity_main);
+        main_videoview = (VideoView) findViewById(R.id.main_videoview);
+        main_videoview.setVideoURI(Uri.parse("android.resource://com.example.jiceng.a520typewriter/"+R.raw.video));
+        main_videoview.start();
+        main_videoview.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.start();
+                mp.setLooping(true);
+            }
+        });
         mTypeTextView = (TypeTextView) findViewById(R.id.typeTxtId);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         mTypeTextView.setOnTypeViewListener(new TypeTextView.OnTypeViewListener() {
@@ -55,18 +65,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("", "onTypeOver");
             }
         });
-        mTypeTextView.start(scrollView ,TEST_DATA);
+        mTypeTextView.start(scrollView,TEST_DATA);
 
-        main_videoview = (VideoView) findViewById(R.id.main_videoview);
-        main_videoview.setVideoURI(Uri.parse("android.resource://com.example.jiceng.a520typewriter/"+R.raw.video));
-        main_videoview.start();
-        main_videoview.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.start();
-                mp.setLooping(true);
-            }
-        });
+
     }
 
     @Override
@@ -81,6 +82,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         main_videoview.start();
-        mTypeTextView.start(scrollView ,TEST_DATA);
+        mTypeTextView.start(scrollView,TEST_DATA);
     }
 }

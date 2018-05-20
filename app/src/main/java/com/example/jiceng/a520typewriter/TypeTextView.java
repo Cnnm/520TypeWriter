@@ -29,7 +29,7 @@ public class TypeTextView extends android.support.v7.widget.AppCompatTextView {
     private String mShowTextString = null;
     private Timer mTypeTimer = null;
     private OnTypeViewListener mOnTypeViewListener = null;
-    private static final int TYPE_TIME_DELAY = 40;
+    private static final int TYPE_TIME_DELAY = 30;
     private int mTypeTimeDelay = TYPE_TIME_DELAY; // 打字间隔
     private ScrollView scrollView;
 
